@@ -5,19 +5,21 @@ import {
   ArrowDown,
   Github,
   Instagram,
+  Linkedin,
   MapPin,
-  Music2,
   Sparkles,
   Youtube,
 } from "lucide-react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import { profileData, socialLinks, techStack } from "@/data/mock";
 import type { SocialIconName } from "@/data/mock";
 
 const iconMap: Record<SocialIconName, typeof Github> = {
   Github,
+  Linkedin,
   Youtube,
   Instagram,
-  Music2,
 };
 
 type HeroSectionProps = {
@@ -26,9 +28,48 @@ type HeroSectionProps = {
 
 export default function HeroSection({ projectCount }: HeroSectionProps) {
   const skillCount = techStack.length;
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReduced) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".hero-reveal",
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          stagger: 0.15,
+          delay: 0.3,
+        },
+      );
+      gsap.fromTo(
+        ".hero-card",
+        { scale: 0.85, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          delay: 0.6,
+        },
+      );
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
+      ref={sectionRef}
       id="home"
       className="gradient-bg relative flex min-h-screen items-center justify-center overflow-hidden"
     >
@@ -47,26 +88,26 @@ export default function HeroSection({ projectCount }: HeroSectionProps) {
         <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
           <div className="flex-1 text-center lg:text-left">
             <div className="hero-reveal mb-8 inline-flex items-center gap-2 rounded-full acrylic px-4 py-2">
-              <Sparkles size={16} className="text-cyan-400" />
-              <span className="text-sm text-slate-300">
+              <Sparkles size={16} className="text-accent-cyan" />
+              <span className="text-sm text-theme-tertiary">
                 Available for opportunities
               </span>
             </div>
 
             <h1 className="hero-reveal mb-4 text-5xl font-bold md:text-6xl lg:text-7xl">
-              <span className="text-white">Hi, I'm </span>
+              <span className="text-theme-primary">Hi, I'm </span>
               <span className="text-gradient">{profileData.name}</span>
             </h1>
 
-            <h2 className="hero-reveal mb-6 text-2xl font-medium text-slate-300 md:text-3xl">
+            <h2 className="hero-reveal mb-6 text-2xl font-medium text-theme-secondary md:text-3xl">
               {profileData.title}
             </h2>
 
-            <p className="hero-reveal mx-auto mb-8 max-w-xl text-lg leading-relaxed text-slate-400 lg:mx-0">
+            <p className="hero-reveal mx-auto mb-8 max-w-xl text-lg leading-relaxed text-theme-tertiary lg:mx-0">
               {profileData.tagline}
             </p>
 
-            <div className="hero-reveal mb-8 flex items-center justify-center gap-2 text-slate-500 lg:justify-start">
+            <div className="hero-reveal mb-8 flex items-center justify-center gap-2 text-theme-muted lg:justify-start">
               <MapPin size={16} />
               <span>{profileData.location}</span>
             </div>
@@ -88,7 +129,7 @@ export default function HeroSection({ projectCount }: HeroSectionProps) {
                 href={profileData.githubProfile}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full acrylic px-8 py-3.5 font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-white/10"
+                className="rounded-full acrylic px-8 py-3.5 font-medium text-theme-primary transition-all duration-300 hover:scale-105 hover:bg-white/10"
               >
                 GitHub Profile
               </a>
@@ -103,7 +144,7 @@ export default function HeroSection({ projectCount }: HeroSectionProps) {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-xl acrylic-light p-3 text-slate-400 transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-blue-500/20 hover:text-white"
+                    className="rounded-xl acrylic-light p-3 text-theme-tertiary transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-blue-500/20 hover:text-white"
                     aria-label={social.name}
                   >
                     <IconComponent size={20} />
@@ -124,25 +165,29 @@ export default function HeroSection({ projectCount }: HeroSectionProps) {
                     alt={profileData.name}
                     width={256}
                     height={256}
-                    className="relative h-full w-full rounded-full border-4 border-slate-800 object-cover"
+                    className="relative h-full w-full rounded-full border-4 object-cover"
+                    style={{ borderColor: "var(--color-border)" }}
                     priority
                   />
                 </div>
                 <div className="text-center">
-                  <h3 className="mb-1 text-xl font-semibold text-white">
+                  <h3 className="mb-1 text-xl font-semibold text-theme-primary">
                     {profileData.name}
                   </h3>
-                  <p className="mono text-sm text-slate-400">
+                  <p className="mono text-sm text-theme-tertiary">
                     @{profileData.username}
                   </p>
                 </div>
 
-                <div className="mt-6 flex items-center justify-center gap-8 border-t border-slate-700/50 pt-6">
+                <div
+                  className="mt-6 flex items-center justify-center gap-8 border-t pt-6"
+                  style={{ borderColor: "var(--color-border)" }}
+                >
                   <div className="text-center">
                     <div className="text-2xl font-bold text-gradient">
                       {Math.max(projectCount, 0)}
                     </div>
-                    <div className="text-xs uppercase tracking-wider text-slate-500">
+                    <div className="text-xs uppercase tracking-wider text-theme-muted">
                       Repos
                     </div>
                   </div>
@@ -150,7 +195,7 @@ export default function HeroSection({ projectCount }: HeroSectionProps) {
                     <div className="text-2xl font-bold text-gradient">
                       {skillCount}
                     </div>
-                    <div className="text-xs uppercase tracking-wider text-slate-500">
+                    <div className="text-xs uppercase tracking-wider text-theme-muted">
                       Skills
                     </div>
                   </div>
@@ -162,7 +207,10 @@ export default function HeroSection({ projectCount }: HeroSectionProps) {
       </div>
 
       <div className="animate-bounce absolute bottom-10 left-1/2 -translate-x-1/2">
-        <div className="flex h-10 w-6 items-start justify-center rounded-full border-2 border-slate-600 p-2">
+        <div
+          className="flex h-10 w-6 items-start justify-center rounded-full border-2 p-2"
+          style={{ borderColor: "var(--color-text-muted)" }}
+        >
           <div className="h-3 w-1.5 animate-pulse rounded-full bg-blue-500" />
         </div>
       </div>

@@ -1,4 +1,4 @@
-export type SocialIconName = "Github" | "Youtube" | "Instagram" | "Music2";
+export type SocialIconName = "Github" | "Youtube" | "Instagram" | "Linkedin";
 
 export const profileData = {
   name: "Noval",
@@ -86,6 +86,12 @@ export const techStack: TechItem[] = [
       "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg",
     alt: "Svelte",
   },
+  {
+    name: "Astro",
+    logoSrc:
+      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/astro/astro-original.svg",
+    alt: "Astro",
+  },
 ];
 
 export const socialLinks: {
@@ -114,9 +120,9 @@ export const socialLinks: {
   },
   {
     id: 4,
-    name: "TikTok",
-    url: "https://tiktok.com/@nopalloz",
-    icon: "Music2",
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/noval-akbar-5342343a4/",
+    icon: "Linkedin",
   },
 ];
 
