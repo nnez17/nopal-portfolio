@@ -55,14 +55,14 @@ export async function fetchWakatimeStats(): Promise<WakaTimeData | null> {
     };
 
     const [statsRes, allTimeRes] = await Promise.all([
-      fetch(
-        "https://wakatime.com/api/v1/users/current/stats/last_7_days",
-        { headers, next: { revalidate: 3600 } },
-      ),
-      fetch(
-        "https://wakatime.com/api/v1/users/current/all_time_since_today",
-        { headers, next: { revalidate: 3600 } },
-      ),
+      fetch("https://wakatime.com/api/v1/users/current/stats/last_7_days", {
+        headers,
+        next: { revalidate: 3600 },
+      }),
+      fetch("https://wakatime.com/api/v1/users/current/all_time_since_today", {
+        headers,
+        next: { revalidate: 3600 },
+      }),
     ]);
 
     if (!statsRes.ok) {
@@ -74,10 +74,8 @@ export async function fetchWakatimeStats(): Promise<WakaTimeData | null> {
       return null;
     }
 
-    const statsData =
-      (await statsRes.json()) as WakaTimeStatsResponse;
-    const allTimeData =
-      (await allTimeRes.json()) as WakaTimeAllTimeResponse;
+    const statsData = (await statsRes.json()) as WakaTimeStatsResponse;
+    const allTimeData = (await allTimeRes.json()) as WakaTimeAllTimeResponse;
 
     return {
       stats: statsData.data,

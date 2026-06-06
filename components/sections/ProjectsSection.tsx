@@ -1,149 +1,126 @@
 "use client";
 
-import { ExternalLink, Folder, Github } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import type { PortfolioRepo } from "@/lib/github";
-import AnimatedSection from "@/components/animations/AnimatedSection";
+import SectionReveal from "@/components/animations/SectionReveal";
 
-export type ProjectsSectionProps = {
+type Props = {
   repos: PortfolioRepo[];
   githubUsername: string;
 };
 
-export default function ProjectsSection({
-  repos,
-  githubUsername,
-}: ProjectsSectionProps) {
+export default function ProjectsSection({ repos, githubUsername }: Props) {
   return (
-    <section id="projects" className="relative overflow-hidden py-24">
-      <div className="absolute left-0 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-purple-500/5 blur-3xl" />
-      <div className="absolute right-0 top-1/4 h-[400px] w-[400px] rounded-full bg-blue-500/5 blur-3xl" />
+    <section id="projects" className="relative overflow-hidden py-32">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/4 top-1/3 h-[600px] w-[600px] rounded-full bg-purple-500/5 blur-[150px]" />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <AnimatedSection>
-          <div className="project-grid-header mb-16 text-center">
-            <span className="mb-4 inline-block rounded-full acrylic-light px-4 py-1.5 text-sm font-medium text-accent-cyan">
-              GitHub
+        <SectionReveal>
+          <div className="mb-20">
+            <span className="mb-4 block text-xs tracking-widest uppercase text-[var(--color-text-muted)]">
+              Projects
             </span>
-            <h2 className="mb-4 text-4xl font-bold text-theme-primary md:text-5xl">
-              Latest <span className="text-gradient">Repos</span>
+            <h2 className="text-4xl font-bold tracking-tight text-[var(--color-foreground)] sm:text-5xl md:text-6xl">
+              Featured <span className="text-gradient">Work</span>
             </h2>
-            <p className="mx-auto max-w-2xl text-theme-tertiary">
-              Live snapshot from @{githubUsername}: public repos (no forks),
-              sorted by recent activity
-            </p>
           </div>
-        </AnimatedSection>
+        </SectionReveal>
 
-        <AnimatedSection
-          animation="fadeUp"
-          stagger={0.12}
-          selector=".project-card-animate"
-        >
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {repos.map((project) => {
-              const displayTags =
-                project.tags.length > 0 ? project.tags.slice(0, 6) : ["GitHub"];
-              return (
-                <div key={project.id} className="group relative">
-                  <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-blue-500/20 to-cyan-500/20 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
-
-                  <article className="project-card-animate relative flex h-full flex-col rounded-2xl acrylic-strong p-6 transition-all duration-300 group-hover:-translate-y-2 group-hover:border-blue-500/40">
-                    <div className="mb-4 flex items-start justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-blue-500/20 to-cyan-500/20">
-                        <Folder className="h-6 w-6 text-accent-cyan" />
+        {repos.length > 0 && (
+          <div className="space-y-16">
+            {repos.map((project, idx) => (
+              <SectionReveal key={project.id} delay={idx * 0.1}>
+                <div className="group relative border-t border-[var(--color-border)] pt-8">
+                  <div className="grid gap-6 md:grid-cols-3 md:gap-12">
+                    <div className="md:col-span-1">
+                      <span className="text-xs text-[var(--color-text-muted)]">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--color-foreground)] transition-colors group-hover:text-[var(--color-accent-blue)]">
+                        {project.name}
+                      </h3>
+                    </div>
+                    <div className="md:col-span-2">
+                      <p className="mb-4 leading-relaxed text-[var(--color-text-secondary)]">
+                        {project.description}
+                      </p>
+                      <div className="mb-6 flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-full border border-[var(--color-border)] px-3 py-1 text-xs text-[var(--color-text-muted)]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-4">
                         <a
                           href={project.htmlUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="rounded-lg p-2 text-theme-tertiary transition-colors hover:bg-white/5 hover:text-white"
-                          aria-label="GitHub repo"
+                          className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-foreground)]"
                         >
-                          <Github size={18} />
+                          <Github size={16} />
+                          Source
                         </a>
-                        {project.homepage &&
-                          /^https?:\/\//.test(project.homepage) && (
-                            <a
-                              href={project.homepage}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="rounded-lg p-2 text-theme-tertiary transition-colors hover:bg-white/5 hover:text-white"
-                              aria-label="Live site"
-                            >
-                              <ExternalLink size={18} />
-                            </a>
-                          )}
-                      </div>
-                    </div>
-
-                    <h3 className="mb-3 grow-0 text-xl font-semibold text-theme-primary transition-colors group-hover:text-cyan-300">
-                      {project.name}
-                    </h3>
-                    <p className="mb-6 grow text-sm leading-relaxed text-theme-tertiary">
-                      {project.description}
-                    </p>
-
-                    <div className="mt-auto flex flex-wrap gap-2">
-                      {displayTags.map((tag) => (
-                        <span
-                          key={`${project.id}-${tag}`}
-                          className="rounded-full acrylic-light px-3 py-1 text-xs font-medium text-accent-cyan"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    {(project.stars > 0 || project.forks > 0) && (
-                      <div
-                        className="mt-4 flex gap-4 border-t pt-3 text-xs text-theme-muted"
-                        style={{ borderColor: "var(--color-border)" }}
-                      >
-                        {project.stars > 0 && <span>★ {project.stars}</span>}
-                        {project.forks > 0 && (
-                          <span>Forks {project.forks}</span>
+                        {project.homepage && (
+                          <a
+                            href={project.homepage}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-foreground)]"
+                          >
+                            <ExternalLink size={16} />
+                            Live Demo
+                          </a>
                         )}
                       </div>
-                    )}
-                  </article>
+                    </div>
+                  </div>
                 </div>
-              );
-            })}
-          </div>
-        </AnimatedSection>
-
-        {repos.length === 0 && (
-          <div className="mx-auto mt-10 max-w-lg rounded-2xl acrylic-strong p-10 text-center text-theme-tertiary">
-            <p className="mb-6">
-              Repositories couldn&apos;t be loaded right now (GitHub rate
-              limit), or there&apos;s nothing public yet.
-            </p>
-            <a
-              href={`https://github.com/${githubUsername}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full acrylic px-6 py-3 font-medium text-theme-primary transition-colors hover:bg-white/10"
-            >
-              <Github size={18} /> Open @{githubUsername} on GitHub
-            </a>
+              </SectionReveal>
+            ))}
           </div>
         )}
 
-        <div className="mt-12 text-center">
-          <a
-            href={`https://github.com/${githubUsername}?tab=repositories`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 rounded-full acrylic px-8 py-3.5 font-medium text-theme-primary transition-all duration-300 hover:scale-105 hover:bg-white/10"
-          >
-            <Github size={20} />
-            View All on GitHub
-            <ExternalLink
-              size={16}
-              className="transition-transform group-hover:translate-x-1"
-            />
-          </a>
-        </div>
+        {repos.length === 0 && (
+          <SectionReveal>
+            <div className="border-t border-[var(--color-border)] pt-16 text-center">
+              <p className="text-[var(--color-text-muted)]">
+                Could not load repositories right now.
+              </p>
+              <a
+                href={`https://github.com/${githubUsername}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 text-sm text-[var(--color-accent-blue)] hover:underline"
+              >
+                <Github size={16} />
+                Visit GitHub Profile
+              </a>
+            </div>
+          </SectionReveal>
+        )}
+
+        <SectionReveal delay={0.3}>
+          <div className="mt-20 text-center">
+            <a
+              href={`https://github.com/${githubUsername}?tab=repositories`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 border-b border-[var(--color-border)] pb-1 text-sm text-[var(--color-text-secondary)] transition-colors hover:border-[var(--color-foreground)] hover:text-[var(--color-foreground)]"
+            >
+              View All Projects
+              <ExternalLink
+                size={14}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </a>
+          </div>
+        </SectionReveal>
       </div>
     </section>
   );

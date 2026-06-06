@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bun next dev --turbopack",
-    "build": "bun next build",
-    "start": "bun next start",
+    "dev": "bun x --bun next dev --turbopack",
+    "build": "bun x --bun next build",
+    "start": "bun x --bun next start",
     "lint": "biome lint .",
     "format": "biome format --write .",
     "check": "biome check --write ."

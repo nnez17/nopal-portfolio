@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { BookOpen, Code2, Coffee, Palette } from "lucide-react";
 import { profileData, techStack } from "@/data/mock";
-import AnimatedSection from "@/components/animations/AnimatedSection";
+import SectionReveal from "@/components/animations/SectionReveal";
 
 const highlights = [
   {
@@ -34,109 +33,89 @@ export default function AboutSection() {
       <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl" />
       <div className="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-cyan-500/5 blur-3xl" />
 
-      <AnimatedSection className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="about-header mb-16 text-center">
-          <span className="mb-4 inline-block rounded-full acrylic-light px-4 py-1.5 text-sm font-medium text-accent-cyan">
-            About Me
+      <SectionReveal className="relative z-10 mx-auto max-w-7xl px-6">
+        <div className="mb-16">
+          <span className="mb-4 text-xs tracking-widest uppercase text-[var(--color-text-muted)]">
+            About
           </span>
-          <h2 className="mb-4 text-4xl font-bold text-theme-primary md:text-5xl">
+          <h2 className="mb-4 text-4xl font-bold tracking-tight text-[var(--color-foreground)] md:text-5xl">
             Get to Know <span className="text-gradient">Me Better</span>
           </h2>
-          <p className="mx-auto max-w-2xl text-theme-tertiary">
+          <p className="max-w-2xl text-[var(--color-text-secondary)]">
             A passionate student exploring the intersection of creativity and
             technology
           </p>
         </div>
 
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="about-pane relative">
-            <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-blue-500/20 to-cyan-500/20 blur-xl" />
-            <div className="relative rounded-3xl acrylic-strong p-8 md:p-10">
-              <h3 className="mb-6 text-2xl font-semibold text-theme-primary">
+        <div className="grid items-start gap-16 lg:grid-cols-2">
+          <SectionReveal animation="fadeLeft" delay={0.1}>
+            <div>
+              <h3 className="mb-6 text-2xl font-semibold text-[var(--color-foreground)]">
                 My Story
               </h3>
-              <div className="space-y-4 leading-relaxed text-theme-secondary">
-                <p>{profileData.bio}</p>
+              <div className="space-y-5 leading-relaxed text-[var(--color-text-secondary)]">
+                <p className="text-lg">
+                  I&apos;m a frontend developer who loves turning ideas into
+                  clean, functional interfaces. Every project is a chance to
+                  refine my craft and build something that feels right.
+                </p>
                 <p>
                   I work with HTML, CSS, Tailwind, JavaScript, TypeScript,
-                  React, Next.js, Svelte, Node, Bun, and C# — focusing on smooth
+                  React, Next.js, Svelte, Node, and Bun — focusing on smooth
                   interfaces and tooling that stays fun to iterate on.
                 </p>
                 <p>
-                  I believe inspiration can come from anywhere, even from the
-                  quietest places and the simplest moments.
+                  I also contribute to{" "}
+                  <a
+                    href="https://github.com/tiga-searah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--color-accent-blue)] underline underline-offset-2 transition-colors hover:text-[var(--color-accent-cyan)]"
+                  >
+                    tiga-searah
+                  </a>
+                  , a GitHub organization where we explore and build open-source
+                  projects together.
                 </p>
               </div>
 
-              <div className="acrylic mt-8 rounded-2xl border-l-4 border-blue-500 p-6">
-                <p className="italic text-theme-secondary">
-                  &ldquo;Let&apos;s keep growing and creating together.&rdquo;
+              <div className="relative mt-10 border-l-2 border-[var(--color-accent-blue)] pl-6">
+                <p className="text-lg italic text-[var(--color-text-secondary)]">
+                  {"“Let's keep growing and creating together.”"}
                 </p>
-                <span className="mt-2 block text-sm text-theme-muted">
+                <span className="mt-2 block text-sm text-[var(--color-text-muted)]">
                   — {profileData.name}
                 </span>
               </div>
             </div>
-          </div>
+          </SectionReveal>
 
-          <div className="space-y-8">
-            <AnimatedSection animation="fadeUp" stagger={0.1} selector=".about-highlight">
-              <div className="grid grid-cols-2 gap-4">
-                {highlights.map((item) => (
-                  <div
-                    key={item.title}
-                    className="about-highlight group rounded-2xl acrylic p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-blue-500/10"
-                  >
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-blue-500/20 to-cyan-500/20 transition-transform duration-300 group-hover:scale-110">
-                      <item.icon className="h-6 w-6 text-accent-cyan" />
+          <div className="space-y-12">
+            <SectionReveal animation="fadeRight" delay={0.2}>
+              <div>
+                <h3 className="mb-6 text-xl font-semibold text-[var(--color-foreground)]">
+                  Highlights
+                </h3>
+                <div className="grid grid-cols-2 gap-5">
+                  {highlights.map((item) => (
+                    <div key={item.title} className="group">
+                      <div className="mb-3 flex h-10 w-10 items-center justify-center">
+                        <item.icon className="h-5 w-5 text-[var(--color-accent-cyan)]" />
+                      </div>
+                      <h4 className="mb-1 font-semibold text-[var(--color-foreground)]">
+                        {item.title}
+                      </h4>
+                      <p className="text-sm text-[var(--color-text-secondary)]">
+                        {item.description}
+                      </p>
                     </div>
-                    <h4 className="mb-1 font-semibold text-theme-primary">
-                      {item.title}
-                    </h4>
-                    <p className="text-sm text-theme-tertiary">
-                      {item.description}
-                    </p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </AnimatedSection>
-
-            <div className="about-pane rounded-2xl acrylic p-6">
-              <h4 className="mb-5 text-lg font-semibold text-theme-primary">
-                Tech Skills
-              </h4>
-              <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {techStack.map((tech) => (
-                  <li
-                    key={tech.name}
-                    className="about-tech-chip acrylic-light hover:bg-blue-500/15 flex cursor-default flex-col items-center gap-2 rounded-xl border p-3 text-center transition-all duration-300 hover:-translate-y-0.5"
-                    style={{ borderColor: "var(--color-border)" }}
-                  >
-                    <Image
-                      src={tech.logoSrc}
-                      alt={tech.alt}
-                      width={36}
-                      height={36}
-                      className={`h-9 w-9 object-contain ${
-                        tech.name === "Next.js"
-                          ? "invert"
-                          : tech.name === "Astro"
-                            ? "invert-dark-only"
-                            : tech.name === "Bun"
-                              ? "drop-shadow-[0_0_6px_rgba(255,255,255,0.35)]"
-                              : ""
-                      }`}
-                    />
-                    <span className="text-xs font-medium text-theme-secondary">
-                      {tech.name}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </SectionReveal>
           </div>
         </div>
-      </AnimatedSection>
+      </SectionReveal>
     </section>
   );
 }

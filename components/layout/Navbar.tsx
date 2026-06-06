@@ -8,34 +8,34 @@ import ThemeToggle from "@/components/theme/ThemeToggle";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    const el = navRef.current;
-    if (!el) return;
-    const prefersReduced = window.matchMedia(
+    const nav = navRef.current;
+    if (!nav) return;
+    const reduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    if (prefersReduced) return;
+    if (reduced) return;
 
     gsap.fromTo(
-      el,
+      nav,
       { y: -80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 3.2 },
     );
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
-    setIsMobileMenuOpen(false);
+  const scrollTo = (href: string) => {
+    const el = document.querySelector(href);
+    el?.scrollIntoView({ behavior: "smooth" });
+    setIsMobileOpen(false);
   };
 
   return (
@@ -48,13 +48,13 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
         <button
           type="button"
-          onClick={() => scrollToSection("#home")}
+          onClick={() => scrollTo("#home")}
           className="group flex items-center gap-3"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 text-lg font-bold text-white transition-transform duration-300 group-hover:scale-110">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 text-base font-bold text-white transition-transform duration-300 group-hover:scale-110">
             N
           </div>
-          <span className="hidden text-lg font-semibold sm:block" style={{ color: "var(--color-foreground)" }}>
+          <span className="hidden text-lg font-semibold sm:block text-[var(--color-foreground)]">
             {profileData.username}
           </span>
         </button>
@@ -64,9 +64,8 @@ export default function Navbar() {
             <button
               type="button"
               key={link.name}
-              onClick={() => scrollToSection(link.href)}
-              className="group relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:text-white"
-              style={{ color: "var(--color-text-secondary)" }}
+              onClick={() => scrollTo(link.href)}
+              className="group relative rounded-lg px-4 py-2 text-sm font-medium text-[var(--color-text-secondary)] transition-all duration-300 hover:text-[var(--color-foreground)]"
             >
               {link.name}
               <span className="absolute bottom-1 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-3/5" />
@@ -78,7 +77,7 @@ export default function Navbar() {
           <ThemeToggle />
           <button
             type="button"
-            onClick={() => scrollToSection("#contact")}
+            onClick={() => scrollTo("#contact")}
             className="hidden rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/25 md:block"
           >
             Get in Touch
@@ -87,17 +86,16 @@ export default function Navbar() {
 
         <button
           type="button"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 md:hidden"
-          style={{ color: "var(--color-text-secondary)" }}
+          onClick={() => setIsMobileOpen(!isMobileOpen)}
+          className="p-2 text-[var(--color-text-secondary)] md:hidden"
         >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       <div
         className={`absolute left-0 right-0 top-full overflow-hidden transition-all duration-300 md:hidden acrylic-strong ${
-          isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          isMobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="space-y-2 px-6 py-4">
@@ -105,9 +103,8 @@ export default function Navbar() {
             <button
               type="button"
               key={link.name}
-              onClick={() => scrollToSection(link.href)}
-              className="group relative block w-full rounded-lg px-4 py-3 text-left transition-all duration-300 hover:text-white"
-              style={{ color: "var(--color-text-secondary)" }}
+              onClick={() => scrollTo(link.href)}
+              className="group relative block w-full rounded-lg px-4 py-3 text-left text-sm text-[var(--color-text-secondary)] transition-all duration-300 hover:text-[var(--color-foreground)]"
             >
               {link.name}
               <span className="absolute bottom-2 left-4 h-[2px] w-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 group-hover:w-[calc(100%-2rem)]" />
@@ -115,7 +112,7 @@ export default function Navbar() {
           ))}
           <button
             type="button"
-            onClick={() => scrollToSection("#contact")}
+            onClick={() => scrollTo("#contact")}
             className="mt-4 w-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-5 py-3 text-sm font-medium text-white"
           >
             Get in Touch

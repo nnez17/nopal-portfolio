@@ -6,15 +6,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type AnimationType = "fadeUp" | "fadeLeft" | "fadeRight" | "scaleIn";
+type AnimationType = "fadeUp" | "fadeLeft" | "fadeRight" | "scaleIn" | "reveal";
 
-type AnimatedSectionProps = {
+type SectionRevealProps = {
   children: React.ReactNode;
   className?: string;
   animation?: AnimationType;
   delay?: number;
+  duration?: number;
   stagger?: number;
   selector?: string;
+  start?: string;
 };
 
 function prefersReducedMotion(): boolean {
@@ -22,14 +24,16 @@ function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-export default function AnimatedSection({
+export default function SectionReveal({
   children,
   className = "",
   animation = "fadeUp",
   delay = 0,
-  stagger = 0.15,
+  duration = 0.8,
+  stagger = 0.1,
   selector,
-}: AnimatedSectionProps) {
+  start = "top 85%",
+}: SectionRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -41,35 +45,36 @@ export default function AnimatedSection({
       fadeLeft: { x: -60, opacity: 0 },
       fadeRight: { x: 60, opacity: 0 },
       scaleIn: { scale: 0.9, opacity: 0 },
+      reveal: { scaleY: 0, transformOrigin: "top center" },
+    };
+
+    const toMap: Record<AnimationType, gsap.TweenVars> = {
+      fadeUp: { y: 0, opacity: 1 },
+      fadeLeft: { x: 0, opacity: 1 },
+      fadeRight: { x: 0, opacity: 1 },
+      scaleIn: { scale: 1, opacity: 1 },
+      reveal: { scaleY: 1, transformOrigin: "top center" },
     };
 
     const targets = selector ? el.querySelectorAll(selector) : el;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        targets,
-        { ...fromMap[animation] },
-        {
-          ...(animation === "fadeUp"
-            ? { y: 0, opacity: 1 }
-            : animation === "fadeLeft" || animation === "fadeRight"
-              ? { x: 0, opacity: 1 }
-              : { scale: 1, opacity: 1 }),
-          duration: 0.8,
-          ease: "power3.out",
-          delay,
-          stagger,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
+      gsap.fromTo(targets, fromMap[animation], {
+        ...toMap[animation],
+        duration,
+        ease: "power3.out",
+        delay,
+        stagger,
+        scrollTrigger: {
+          trigger: el,
+          start,
+          toggleActions: "play none none none",
         },
-      );
+      });
     }, el);
 
     return () => ctx.revert();
-  }, [animation, delay, stagger, selector]);
+  }, [animation, delay, duration, stagger, selector, start]);
 
   return (
     <div ref={ref} className={className}>

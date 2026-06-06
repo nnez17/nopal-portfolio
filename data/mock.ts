@@ -3,7 +3,7 @@ export type SocialIconName = "Github" | "Youtube" | "Instagram" | "Linkedin";
 export const profileData = {
   name: "Noval",
   username: "nnez17",
-  title: "Software Developer",
+  title: "FrontEnd Developer",
   tagline: "Just someone who wants to try something new",
   bio: "Hi, I'm Noval — a student who's passionate about technology, creativity, and storytelling. I love discovering how imagination and logic can work together through coding, design, and writing.",
   location: "Indonesia",
@@ -19,78 +19,97 @@ export type TechItem = {
   alt: string;
 };
 
-/** Logos via jsDelivr (devicons) and Simple Icons (Bun). */
+/** Logos via SVGL (svgl.app). */
 export const techStack: TechItem[] = [
   {
     name: "HTML",
-    logoSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+    logoSrc: "https://svgl.app/library/html5.svg",
     alt: "HTML",
   },
   {
     name: "CSS",
-    logoSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+    logoSrc: "https://svgl.app/library/css.svg",
     alt: "CSS",
   },
   {
     name: "Tailwind CSS",
-    logoSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+    logoSrc: "https://svgl.app/library/tailwindcss.svg",
     alt: "Tailwind CSS",
   },
   {
     name: "JavaScript",
-    logoSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    logoSrc: "https://svgl.app/library/javascript.svg",
     alt: "JavaScript",
   },
   {
     name: "TypeScript",
-    logoSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    logoSrc: "https://svgl.app/library/typescript.svg",
     alt: "TypeScript",
   },
   {
     name: "React",
-    logoSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    logoSrc: "https://svgl.app/library/react_dark.svg",
     alt: "React",
   },
   {
     name: "Bun",
-    logoSrc: "https://bun.sh/logo.svg",
+    logoSrc: "https://svgl.app/library/bun.svg",
     alt: "Bun",
   },
   {
-    name: "C#",
-    logoSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
-    alt: "C#",
-  },
-  {
     name: "Node.js",
-    logoSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    logoSrc: "https://svgl.app/library/nodejs.svg",
     alt: "Node.js",
   },
   {
     name: "Next.js",
-    logoSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    logoSrc: "https://svgl.app/library/nextjs_icon_dark.svg",
     alt: "Next.js",
   },
   {
     name: "Svelte",
-    logoSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg",
+    logoSrc: "https://svgl.app/library/svelte.svg",
     alt: "Svelte",
   },
   {
     name: "Astro",
-    logoSrc:
-      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/astro/astro-original.svg",
+    logoSrc: "https://svgl.app/library/astro-icon-dark.svg",
     alt: "Astro",
+  },
+  {
+    name: "ESLint",
+    logoSrc: "https://svgl.app/library/eslint-icon-dark.svg",
+    alt: "ESLint",
+  },
+  {
+    name: "Biome",
+    logoSrc: "https://svgl.app/library/biomejs.svg",
+    alt: "Biome",
+  },
+  {
+    name: "Git",
+    logoSrc: "https://svgl.app/library/git.svg",
+    alt: "Git",
+  },
+  {
+    name: "Figma",
+    logoSrc: "https://svgl.app/library/figma.svg",
+    alt: "Figma",
+  },
+  {
+    name: ".NET",
+    logoSrc: "https://svgl.app/library/dotnet.svg",
+    alt: ".NET",
+  },
+  {
+    name: "C#",
+    logoSrc: "https://svgl.app/library/csharp.svg",
+    alt: "C#",
+  },
+  {
+    name: "Radix UI",
+    logoSrc: "https://svgl.app/library/radix-ui_dark.svg",
+    alt: "Radix UI",
   },
 ];
 
@@ -130,6 +149,6 @@ export const navLinks: { name: string; href: string }[] = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
-  { name: "Certificates", href: "#certificates" },
+  { name: "Skills", href: "#skills" },
   { name: "Contact", href: "#contact" },
 ];
