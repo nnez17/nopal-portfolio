@@ -177,8 +177,6 @@ export const navLinks: { name: string; href: string }[] = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
   { name: "Certificates", href: "#certificates" },
-  { name: "Stats", href: "#wakatime" },
   { name: "Contact", href: "#contact" },
 ];
