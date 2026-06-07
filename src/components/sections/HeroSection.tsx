@@ -194,7 +194,7 @@ export default function HeroSection() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-xl acrylic-light p-3 text-(--color-text-tertiary) transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-blue-500/20 hover:text-white"
+                    className="rounded-xl acrylic-light p-3 text-(--color-text-tertiary)"
                     aria-label={social.name}
                   >
                     <IconComponent size={20} />
