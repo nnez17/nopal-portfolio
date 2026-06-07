@@ -14,7 +14,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "nnez | Portfolio",
+  title: "Noval | Portfolio",
   description: "Frontend developer crafting modern digital experiences.",
   icons: {
     icon: [{ url: "https://avatars.githubusercontent.com/u/105137360?v=4" }],

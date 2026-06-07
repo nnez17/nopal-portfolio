@@ -122,15 +122,15 @@ export default function HeroSection() {
       />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-32">
-        <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
+        <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-20">
           <div className="flex-1 text-center lg:text-left">
-            <h1 className="mb-4 overflow-hidden text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+            <h1 className="mb-4 overflow-hidden text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
               <span className="sr-only">{profileData.name}</span>
               <span aria-hidden="true">
                 {nameChars.map(({ char, id }) => (
                   <span
                     key={id}
-                    className="hero-char inline-block text-[var(--color-foreground)]"
+                    className="hero-char inline-block text-(--color-foreground)"
                   >
                     {char === " " ? "\u00A0" : char}
                   </span>
@@ -144,7 +144,7 @@ export default function HeroSection() {
                 {titleWords.map(({ word, id }, idx) => (
                   <span
                     key={id}
-                    className="hero-word inline-block bg-gradient-to-r from-[var(--color-accent-blue)] to-[var(--color-accent-cyan)] bg-clip-text text-xl font-medium text-transparent sm:text-2xl md:text-3xl"
+                    className="hero-word inline-block bg-linear-to-r from-(--color-accent-blue) to-(--color-accent-cyan) bg-clip-text text-xl font-medium text-transparent sm:text-2xl md:text-3xl"
                   >
                     {word}
                     {idx < titleWords.length - 1 ? "\u00A0" : ""}
@@ -153,12 +153,12 @@ export default function HeroSection() {
               </span>
             </h2>
 
-            <div className="hero-fade mb-4 flex items-center justify-center gap-2 text-sm text-[var(--color-text-muted)] lg:justify-start">
+            <div className="hero-fade mb-4 flex items-center justify-center gap-2 text-sm text-(--color-text-muted) lg:justify-start">
               <MapPin size={14} />
               <span>{profileData.location}</span>
             </div>
 
-            <p className="hero-fade mx-auto mb-8 max-w-xl text-base leading-relaxed text-[var(--color-text-secondary)] lg:mx-0">
+            <p className="hero-fade mx-auto mb-8 max-w-xl text-base leading-relaxed text-(--color-text-secondary) lg:mx-0">
               {profileData.tagline}
             </p>
 
@@ -170,7 +170,7 @@ export default function HeroSection() {
                     .querySelector("#projects")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="group flex items-center gap-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-3.5 font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/30"
+                className="group flex items-center gap-2 rounded-full bg-linear-to-r from-blue-500 to-cyan-500 px-8 py-3.5 font-medium text-white transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/30"
               >
                 View My Work
                 <ArrowDown size={18} />
@@ -179,7 +179,7 @@ export default function HeroSection() {
                 href={profileData.githubProfile}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full acrylic px-8 py-3.5 text-sm text-[var(--color-foreground)] transition-all duration-300 hover:scale-105 hover:bg-white/10"
+                className="rounded-full acrylic px-8 py-3.5 text-sm text-(--color-foreground) transition-all duration-300 hover:scale-105 hover:bg-white/10"
               >
                 GitHub Profile
               </a>
@@ -194,7 +194,7 @@ export default function HeroSection() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-xl acrylic-light p-3 text-[var(--color-text-tertiary)] transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-blue-500/20 hover:text-white"
+                    className="rounded-xl acrylic-light p-3 text-(--color-text-tertiary) transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-blue-500/20 hover:text-white"
                     aria-label={social.name}
                   >
                     <IconComponent size={20} />
@@ -206,8 +206,8 @@ export default function HeroSection() {
 
           <div className="hero-avatar shrink-0">
             <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 blur-3xl opacity-30" />
-              <div className="relative rounded-full border-4 border-[var(--color-border)] glow-blue">
+              <div className="absolute inset-0 rounded-full bg-linear-to-r from-blue-500 to-cyan-500 blur-3xl opacity-30" />
+              <div className="relative rounded-full border-4 border-(--color-border) glow-blue">
                 <Image
                   src={profileData.avatar}
                   alt={profileData.name}
@@ -215,7 +215,6 @@ export default function HeroSection() {
                   height={240}
                   className="h-48 w-48 rounded-full object-cover md:h-60 md:w-60"
                   priority
-                  style={{ height: "auto" }}
                 />
               </div>
             </div>
@@ -224,8 +223,8 @@ export default function HeroSection() {
       </div>
 
       <div className="hero-fade absolute bottom-10 left-1/2 -translate-x-1/2">
-        <div className="flex h-8 w-5 items-start justify-center rounded-full border border-[var(--color-border)] p-1.5">
-          <div className="h-2 w-1 animate-pulse rounded-full bg-[var(--color-text-muted)]" />
+        <div className="flex h-8 w-5 items-start justify-center rounded-full border border-(--color-border) p-1.5">
+          <div className="h-2 w-1 animate-pulse rounded-full bg-(--color-text-muted)" />
         </div>
       </div>
     </section>

@@ -1,9 +1,9 @@
 {
   "name": "nopal-portfolio",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
-    "dev": "bun x --bun next dev --turbopack",
+    "dev": "bun x --bun next dev",
     "build": "bun x --bun next build",
     "start": "bun x --bun next start",
     "lint": "biome lint .",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.0",
+    "chart.js": "^4.5.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "gsap": "^3.15.0",
@@ -19,6 +20,7 @@
     "next": "^16.2.6",
     "nodemailer": "^6.9.0",
     "react": "^19.2.6",
+    "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.2.6",
     "resend": "^6.12.4",
     "tailwind-merge": "^3.2.0"

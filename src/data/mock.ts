@@ -16,6 +16,7 @@ export const profileData = {
 export type TechItem = {
   name: string;
   logoSrc: string;
+  logoSrcLight?: string;
   alt: string;
 };
 
@@ -49,6 +50,7 @@ export const techStack: TechItem[] = [
   {
     name: "React",
     logoSrc: "https://svgl.app/library/react_dark.svg",
+    logoSrcLight: "https://svgl.app/library/react_light.svg",
     alt: "React",
   },
   {
@@ -74,11 +76,13 @@ export const techStack: TechItem[] = [
   {
     name: "Astro",
     logoSrc: "https://svgl.app/library/astro-icon-dark.svg",
+    logoSrcLight: "https://svgl.app/library/astro-icon-light.svg",
     alt: "Astro",
   },
   {
     name: "ESLint",
     logoSrc: "https://svgl.app/library/eslint-icon-dark.svg",
+    logoSrcLight: "https://svgl.app/library/eslint-icon-light.svg",
     alt: "ESLint",
   },
   {
@@ -109,7 +113,31 @@ export const techStack: TechItem[] = [
   {
     name: "Radix UI",
     logoSrc: "https://svgl.app/library/radix-ui_dark.svg",
+    logoSrcLight: "https://svgl.app/library/radix-ui_light.svg",
     alt: "Radix UI",
+  },
+  {
+    name: "Vite",
+    logoSrc: "https://svgl.app/library/vite.svg",
+    alt: "Vite",
+  },
+  {
+    name: "Shadcn UI",
+    logoSrc: "https://svgl.app/library/shadcn-ui_dark.svg",
+    logoSrcLight: "https://svgl.app/library/shadcn-ui.svg",
+    alt: "Shadcn UI",
+  },
+  {
+    name: "GitHub",
+    logoSrc: "https://svgl.app/library/github_dark.svg",
+    logoSrcLight: "https://svgl.app/library/github_light.svg",
+    alt: "GitHub",
+  },
+  {
+    name: "Prettier",
+    logoSrc: "https://svgl.app/library/prettier-icon-dark.svg",
+    logoSrcLight: "https://svgl.app/library/prettier-icon-light.svg",
+    alt: "Prettier",
   },
 ];
 
@@ -150,5 +178,7 @@ export const navLinks: { name: string; href: string }[] = [
   { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
   { name: "Skills", href: "#skills" },
+  { name: "Certificates", href: "#certificates" },
+  { name: "Stats", href: "#wakatime" },
   { name: "Contact", href: "#contact" },
 ];

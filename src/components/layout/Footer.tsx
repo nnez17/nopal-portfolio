@@ -28,7 +28,7 @@ export default function Footer() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-foreground)]"
+                className="p-2 text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-foreground)]"
                 aria-label={social.name}
               >
                 <IconComponent size={16} />

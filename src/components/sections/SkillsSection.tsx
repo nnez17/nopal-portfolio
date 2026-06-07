@@ -1,14 +1,29 @@
 "use client";
 
-import { useEffect, useRef, useId } from "react";
+import { useEffect, useRef, useId, useState } from "react";
 import gsap from "gsap";
 import { techStack } from "@/data/mock";
 import SectionReveal from "@/components/animations/SectionReveal";
+
+function useTheme() {
+  const [isDark, setIsDark] = useState(true);
+  useEffect(() => {
+    const el = document.documentElement;
+    setIsDark(el.getAttribute("data-theme") !== "light");
+    const obs = new MutationObserver(() =>
+      setIsDark(el.getAttribute("data-theme") !== "light"),
+    );
+    obs.observe(el, { attributes: true, attributeFilter: ["data-theme"] });
+    return () => obs.disconnect();
+  }, []);
+  return isDark;
+}
 
 export default function SkillsSection() {
   const marquee1Ref = useRef<HTMLDivElement>(null);
   const marquee2Ref = useRef<HTMLDivElement>(null);
   const uid = useId();
+  const isDark = useTheme();
 
   useEffect(() => {
     const m1 = marquee1Ref.current;
@@ -55,10 +70,10 @@ export default function SkillsSection() {
       <div className="relative z-10 mx-auto mb-16 max-w-7xl px-6">
         <SectionReveal>
           <div className="mx-auto max-w-3xl">
-            <span className="mb-4 block text-xs tracking-widest uppercase text-[var(--color-text-muted)]">
+            <span className="mb-4 block text-xs tracking-widest uppercase text-(--color-text-muted)">
               Skills
             </span>
-            <h2 className="text-4xl font-bold tracking-tight text-[var(--color-foreground)] sm:text-5xl md:text-6xl">
+            <h2 className="text-4xl font-bold tracking-tight text-(--color-foreground) sm:text-5xl md:text-6xl">
               Technologies I <span className="text-gradient">Use</span>
             </h2>
           </div>
@@ -66,24 +81,25 @@ export default function SkillsSection() {
       </div>
 
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-[var(--color-background)] to-transparent" />
-        <div className="absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-[var(--color-background)] to-transparent" />
+        <div className="absolute inset-y-0 left-0 z-10 w-12 bg-linear-to-r from-(--color-background) to-transparent sm:w-20" />
+        <div className="absolute inset-y-0 right-0 z-10 w-12 bg-linear-to-l from-(--color-background) to-transparent sm:w-20" />
 
         <div className="space-y-8 overflow-hidden">
           <div ref={marquee1Ref} className="flex w-max gap-8 px-4">
             {marqueeItems.map((tech) => (
               <div
                 key={tech.key}
-                className="flex shrink-0 items-center gap-3 rounded-full border border-[var(--color-border)] px-6 py-3"
+                className="flex shrink-0 items-center gap-3 rounded-full border border-(--color-border) px-6 py-3"
               >
+                {/* biome-ignore lint/performance/noImgElement: external SVGs can't be optimized */}
                 <img
-                  src={tech.logoSrc}
+                  src={isDark ? tech.logoSrc : (tech.logoSrcLight ?? tech.logoSrc)}
                   alt={tech.alt}
                   width={24}
                   height={24}
-                  className="size-6 shrink-0 object-contain"
+                  className="shrink-0 object-contain"
                 />
-                <span className="whitespace-nowrap text-sm text-[var(--color-text-secondary)]">
+                <span className="whitespace-nowrap text-sm text-(--color-text-secondary)">
                   {tech.name}
                 </span>
               </div>
@@ -94,16 +110,17 @@ export default function SkillsSection() {
             {marqueeItems.map((tech) => (
               <div
                 key={`${tech.key}-row2`}
-                className="flex shrink-0 items-center gap-3 rounded-full border border-[var(--color-border)] px-6 py-3"
+                className="flex shrink-0 items-center gap-3 rounded-full border border-(--color-border) px-6 py-3"
               >
+                {/* biome-ignore lint/performance/noImgElement: external SVGs can't be optimized */}
                 <img
-                  src={tech.logoSrc}
+                  src={isDark ? tech.logoSrc : (tech.logoSrcLight ?? tech.logoSrc)}
                   alt={tech.alt}
                   width={24}
                   height={24}
-                  className="size-6 shrink-0 object-contain"
+                  className="shrink-0 object-contain"
                 />
-                <span className="whitespace-nowrap text-sm text-[var(--color-text-secondary)]">
+                <span className="whitespace-nowrap text-sm text-(--color-text-secondary)">
                   {tech.name}
                 </span>
               </div>

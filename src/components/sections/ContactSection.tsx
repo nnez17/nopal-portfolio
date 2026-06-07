@@ -79,17 +79,17 @@ export default function ContactSection() {
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <SectionReveal>
           <div className="mb-16">
-            <span className="mb-4 text-xs tracking-widest uppercase text-[var(--color-text-muted)]">
+            <span className="mb-4 text-xs tracking-widest uppercase text-(--color-text-muted)">
               Contact
             </span>
-            <h2 className="mb-4 text-4xl font-bold tracking-tight text-[var(--color-foreground)] md:text-5xl">
+            <h2 className="mb-4 text-4xl font-bold tracking-tight text-(--color-foreground) md:text-5xl">
               Let&apos;s <span className="text-gradient">Connect</span>
             </h2>
-            <p className="max-w-2xl text-[var(--color-text-secondary)]">
+            <p className="max-w-2xl text-(--color-text-secondary)">
               Questions or collaborations? Reach out to{" "}
               <a
                 href={`mailto:${profileData.email}`}
-                className="border-b border-[var(--color-border)] text-[var(--color-foreground)] hover:border-[var(--color-accent-blue)]"
+                className="border-b border-(--color-border) text-(--color-foreground) hover:border-(--color-accent-blue)"
               >
                 {profileData.email}
               </a>
@@ -97,46 +97,46 @@ export default function ContactSection() {
           </div>
         </SectionReveal>
 
-        <div className="grid gap-16 lg:grid-cols-2">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <SectionReveal animation="fadeLeft" delay={0.1}>
             <div>
-              <h3 className="mb-8 text-xl font-semibold text-[var(--color-foreground)]">
+              <h3 className="mb-8 text-xl font-semibold text-(--color-foreground)">
                 Get in Touch
               </h3>
 
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center">
-                    <Mail className="h-5 w-5 text-[var(--color-accent-cyan)]" />
+                    <Mail className="h-5 w-5 text-(--color-accent-cyan)" />
                   </div>
                   <div>
-                    <p className="text-xs text-[var(--color-text-muted)]">
+                    <p className="text-xs text-(--color-text-muted)">
                       Email
                     </p>
-                    <p className="text-[var(--color-foreground)]">
+                    <p className="text-(--color-foreground)">
                       {profileData.email}
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center">
-                    <MapPin className="h-5 w-5 text-[var(--color-accent-cyan)]" />
+                    <MapPin className="h-5 w-5 text-(--color-accent-cyan)" />
                   </div>
                   <div>
-                    <p className="text-xs text-[var(--color-text-muted)]">
+                    <p className="text-xs text-(--color-text-muted)">
                       Location
                     </p>
-                    <p className="text-[var(--color-foreground)]">
+                    <p className="text-(--color-foreground)">
                       {profileData.location}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <hr className="my-8 border-[var(--color-border)]" />
+              <hr className="my-8 border-(--color-border)" />
 
               <div>
-                <h4 className="mb-4 text-lg font-medium text-[var(--color-foreground)]">
+                <h4 className="mb-4 text-lg font-medium text-(--color-foreground)">
                   Follow Me
                 </h4>
                 <div className="flex items-center gap-3">
@@ -148,7 +148,7 @@ export default function ContactSection() {
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-xl border border-[var(--color-border)] p-3 text-[var(--color-text-secondary)] transition-all duration-300 hover:-translate-y-1 hover:border-[var(--color-accent-blue)] hover:text-[var(--color-accent-blue)]"
+                        className="rounded-xl border border-(--color-border) p-3 text-(--color-text-secondary) transition-all duration-300 hover:-translate-y-1 hover:border-(--color-accent-blue) hover:text-(--color-accent-blue)"
                         aria-label={social.name}
                       >
                         <IconComponent size={20} />
@@ -159,8 +159,8 @@ export default function ContactSection() {
               </div>
             </div>
 
-            <div className="relative mt-10 border-l-2 border-[var(--color-accent-cyan)] pl-6">
-              <p className="italic text-[var(--color-text-secondary)]">
+            <div className="relative mt-10 border-l-2 border-(--color-accent-cyan) pl-6">
+              <p className="italic text-(--color-text-secondary)">
                 {
                   "“I'm always open to learning from others, collaborating on small but inspiring projects, and sharing ideas that combine both creativity and technology.”"
                 }
@@ -170,14 +170,14 @@ export default function ContactSection() {
 
           <SectionReveal animation="fadeRight" delay={0.2}>
             <div>
-              <h3 className="mb-8 text-xl font-semibold text-[var(--color-foreground)]">
+              <h3 className="mb-8 text-xl font-semibold text-(--color-foreground)">
                 Send a Message
               </h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label
                     htmlFor="name"
-                    className="mb-2 block text-sm font-medium text-[var(--color-text-secondary)]"
+                    className="mb-2 block text-sm font-medium text-(--color-text-secondary)"
                   >
                     Your Name
                   </label>
@@ -189,13 +189,13 @@ export default function ContactSection() {
                     onChange={handleChange}
                     required
                     placeholder="John Doe"
-                    className="w-full border-b border-[var(--color-border)] rounded-xl bg-transparent px-0 py-3 text-sm text-[var(--color-foreground)] placeholder:text-[var(--color-text-muted)] outline-none transition-all focus:border-[var(--color-accent-blue)]"
+                    className="w-full border-b border-(--color-border) rounded-xl bg-transparent px-0 py-3 text-sm text-(--color-foreground) placeholder:text-(--color-text-muted) outline-none transition-all focus:border-(--color-accent-blue)"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="email"
-                    className="mb-2 block text-sm font-medium text-[var(--color-text-secondary)]"
+                    className="mb-2 block text-sm font-medium text-(--color-text-secondary)"
                   >
                     Email Address
                   </label>
@@ -207,13 +207,13 @@ export default function ContactSection() {
                     onChange={handleChange}
                     required
                     placeholder="john@example.com"
-                    className="w-full border-b border-[var(--color-border)] rounded-xl bg-transparent px-0 py-3 text-sm text-[var(--color-foreground)] placeholder:text-[var(--color-text-muted)] outline-none transition-all focus:border-[var(--color-accent-blue)]"
+                    className="w-full border-b border-(--color-border) rounded-xl bg-transparent px-0 py-3 text-sm text-(--color-foreground) placeholder:text-(--color-text-muted) outline-none transition-all focus:border-(--color-accent-blue)"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="message"
-                    className="mb-2 block text-sm font-medium text-[var(--color-text-secondary)]"
+                    className="mb-2 block text-sm font-medium text-(--color-text-secondary)"
                   >
                     Message
                   </label>
@@ -225,7 +225,7 @@ export default function ContactSection() {
                     required
                     rows={4}
                     placeholder="Tell me about your project or just say hi..."
-                    className="w-full resize-none border-b border-[var(--color-border)] rounded-xl bg-transparent px-0 py-3 text-sm text-[var(--color-foreground)] placeholder:text-[var(--color-text-muted)] outline-none transition-all focus:border-[var(--color-accent-blue)]"
+                    className="w-full resize-none border-b border-(--color-border) rounded-xl bg-transparent px-0 py-3 text-sm text-(--color-foreground) placeholder:text-(--color-text-muted) outline-none transition-all focus:border-(--color-accent-blue)"
                   />
                 </div>
 
@@ -236,7 +236,7 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting || isSubmitted}
-                  className="flex w-full items-center justify-center gap-2 rounded-full border border-[var(--color-border)] px-6 py-3.5 text-sm font-medium text-[var(--color-foreground)] transition-all duration-300 hover:border-[var(--color-accent-blue)] hover:text-[var(--color-accent-blue)] disabled:opacity-50"
+                  className="flex w-full items-center justify-center gap-2 rounded-full border border-(--color-border) px-6 py-3.5 text-sm font-medium text-(--color-foreground) transition-all duration-300 hover:border-(--color-accent-blue) hover:text-(--color-accent-blue) disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     <>
