@@ -93,7 +93,9 @@ export default function SkillsSection() {
               >
                 {/* biome-ignore lint/performance/noImgElement: external SVGs can't be optimized */}
                 <img
-                  src={isDark ? tech.logoSrc : (tech.logoSrcLight ?? tech.logoSrc)}
+                  src={
+                    isDark ? tech.logoSrc : (tech.logoSrcLight ?? tech.logoSrc)
+                  }
                   alt={tech.alt}
                   width={24}
                   height={24}
@@ -114,7 +116,9 @@ export default function SkillsSection() {
               >
                 {/* biome-ignore lint/performance/noImgElement: external SVGs can't be optimized */}
                 <img
-                  src={isDark ? tech.logoSrc : (tech.logoSrcLight ?? tech.logoSrc)}
+                  src={
+                    isDark ? tech.logoSrc : (tech.logoSrcLight ?? tech.logoSrc)
+                  }
                   alt={tech.alt}
                   width={24}
                   height={24}

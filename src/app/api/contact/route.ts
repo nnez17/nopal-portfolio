@@ -108,7 +108,7 @@ export async function POST(request: Request) {
   const contactTo =
     process.env.CONTACT_TO_EMAIL ??
     process.env.CONTACT_RECEIVER ??
-    "novala1710@gmail.com";
+    "contact@nnez.my.id";
 
   try {
     const { Resend } = await import("resend");
@@ -122,7 +122,7 @@ export async function POST(request: Request) {
     ].join("\n");
 
     const { error } = await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
+      from: "Portfolio <contact@nnez.my.id>",
       to: contactTo,
       replyTo: email.trim(),
       subject: `[Portfolio] Message from ${name.trim()}`,

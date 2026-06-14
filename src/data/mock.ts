@@ -8,7 +8,7 @@ export const profileData = {
   bio: "Hi, I'm Noval — a student who's passionate about technology, creativity, and storytelling. I love discovering how imagination and logic can work together through coding, design, and writing.",
   location: "Indonesia",
   avatar: "https://avatars.githubusercontent.com/u/105137360?v=4",
-  email: "novala1710@gmail.com",
+  email: "contact@nnez.my.id",
   resumeUrl: "#",
   githubProfile: "https://github.com/nnez17",
 };
@@ -138,6 +138,11 @@ export const techStack: TechItem[] = [
     logoSrc: "https://svgl.app/library/prettier-icon-dark.svg",
     logoSrcLight: "https://svgl.app/library/prettier-icon-light.svg",
     alt: "Prettier",
+  },
+  {
+    name: "Cloudflare",
+    logoSrc: "https://svgl.app/library/cloudflare.svg",
+    alt: "Cloudflare",
   },
 ];
 

@@ -110,9 +110,7 @@ export default function ContactSection() {
                     <Mail className="h-5 w-5 text-(--color-accent-cyan)" />
                   </div>
                   <div>
-                    <p className="text-xs text-(--color-text-muted)">
-                      Email
-                    </p>
+                    <p className="text-xs text-(--color-text-muted)">Email</p>
                     <p className="text-(--color-foreground)">
                       {profileData.email}
                     </p>
