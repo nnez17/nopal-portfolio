@@ -13,9 +13,9 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[var(--color-border)] py-8">
+    <footer className="border-t border-(--color-border) py-8">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 md:flex-row">
-        <p className="text-sm text-[var(--color-text-muted)]">
+        <p className="text-sm text-(--color-text-muted)">
           &copy; {year} {profileData.name}.
         </p>
 
@@ -28,7 +28,7 @@ export default function Footer() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-[var(--color-text-muted)] transition-colors hover:text-[var(--color-foreground)]"
+                className="p-2 text-(--color-text-muted) transition-colors hover:text-(--color-foreground)"
                 aria-label={social.name}
               >
                 <IconComponent size={16} />

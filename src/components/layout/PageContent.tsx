@@ -33,7 +33,7 @@ export default function PageContent({ repos, githubUsername }: Props) {
     <>
       {!introDone && <IntroAnimation onComplete={handleIntroComplete} />}
       <div
-        className={`min-h-screen bg-[var(--color-bg-primary)] ${introDone ? "opacity-100" : "opacity-0"}`}
+        className={`min-h-screen bg(--color-bg-primary) ${introDone ? "opacity-100" : "opacity-0"}`}
       >
         <Navbar />
         <main>
